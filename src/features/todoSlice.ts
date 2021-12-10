@@ -8,7 +8,6 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    //add title for todo
     addTodo: {
       reducer: (state, action: PayloadAction<Todo>) => {
         state.push(action.payload);
@@ -22,6 +21,7 @@ const todoSlice = createSlice({
         } as Todo,
       }),
     },
+    // TODO working on edit function
     editTodo(state, action: PayloadAction<string>) {
       const index = state.findIndex((todo) => todo.id === action.payload);
       state.splice(index, 1);
