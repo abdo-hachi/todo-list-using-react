@@ -21,10 +21,18 @@ const todoSlice = createSlice({
         } as Todo,
       }),
     },
-    // TODO working on edit function
-    editTodo(state, action: PayloadAction<string>) {
-      const index = state.findIndex((todo) => todo.id === action.payload);
-      state.splice(index, 1);
+
+    editTodo: (state, action) => {
+      return state.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            title: action.payload.title,
+            description: action.payload.description,
+          };
+        }
+        return todo;
+      });
     },
     removeTodo(state, action: PayloadAction<string>) {
       const index = state.findIndex((todo) => todo.id === action.payload);
