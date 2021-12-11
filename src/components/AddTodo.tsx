@@ -25,7 +25,6 @@ const AddTodo: React.FC = () => {
         variant="outlined"
         label="To Do Title"
         fullWidth
-        disabled={false}
         onChange={(e) => setTodoTitle(e.target.value)}
         value={todoTitle}
       />

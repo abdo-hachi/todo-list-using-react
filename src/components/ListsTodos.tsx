@@ -27,7 +27,6 @@ const ListsTodos: React.FC = () => {
   const handelEditTodo = () => {
     (textFieldTitle.current as HTMLInputElement).disabled = false;
     (textFieldDescription.current as HTMLInputElement).disabled = false;
-    console.log(textFieldTitle, textFieldDescription);
   };
   const updateTodo = (id: string, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.which === 13) {
