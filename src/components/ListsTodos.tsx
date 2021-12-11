@@ -3,9 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Checkbox from "@material-ui/core/Checkbox";
-import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
@@ -16,8 +14,8 @@ import { editTodo, removeTodo, setTodoStatus } from "../features/todoSlice";
 const ListsTodos: React.FC = () => {
   const todoList = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch<AppDispatch>();
-  const [titleVlaue, setTitleVlaue] = useState("");
-  const [descriptionVlaue, setDescriptionVlaue] = useState("");
+  const [titleValue, setTitleValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
   const textFieldTitle: any | boolean = useRef<HTMLInputElement | boolean>(
     true
   );
@@ -31,7 +29,7 @@ const ListsTodos: React.FC = () => {
   const updateTodo = (id: string, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.which === 13) {
       dispatch(
-        editTodo({ id, title: titleVlaue, description: descriptionVlaue })
+        editTodo({ id, title: titleValue, description: descriptionValue })
       );
       (textFieldTitle.current as HTMLInputElement).disabled = true;
       (textFieldDescription.current as HTMLInputElement).disabled = true;
@@ -42,26 +40,30 @@ const ListsTodos: React.FC = () => {
       <List>
         {todoList.map((todo) => (
           <ListItem key={todo.id}>
-            <ListItemText
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
-            >
+            <ListItemText>
               <input
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                }}
+                data-testid="title"
                 disabled={textFieldTitle}
                 ref={textFieldTitle}
                 defaultValue={todo.title}
                 onKeyPress={(e) => {
-                  setTitleVlaue(textFieldTitle.current.value);
+                  setTitleValue(textFieldTitle.current.value);
                   updateTodo(todo.id, e);
                 }}
               />
               <input
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                }}
+                data-testid="description"
                 disabled={textFieldDescription}
                 ref={textFieldDescription}
                 defaultValue={todo.description}
                 onKeyPress={(e) => {
-                  setDescriptionVlaue(textFieldDescription.current.value);
+                  setDescriptionValue(textFieldDescription.current.value);
                   updateTodo(todo.id, e);
                 }}
               />
@@ -76,7 +78,6 @@ const ListsTodos: React.FC = () => {
               </IconButton>
               <IconButton
                 onClick={() => {
-                  dispatch(editTodo(todo));
                   handelEditTodo();
                 }}
               >

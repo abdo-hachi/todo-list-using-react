@@ -7,8 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@material-ui/core/CssBaseline";
 ReactDOM.render(
   <React.StrictMode>
-    <CssBaseline />
     <Provider store={store}>
+      <CssBaseline />
       <App />
     </Provider>
   </React.StrictMode>,

@@ -22,20 +22,23 @@ const AddTodo: React.FC = () => {
   return (
     <div>
       <TextField
+        style={{ marginBottom: "1rem" }}
         variant="outlined"
-        label="To Do Title"
+        placeholder="To Do Title"
         fullWidth
         onChange={(e) => setTodoTitle(e.target.value)}
         value={todoTitle}
       />
       <TextField
+        style={{ marginBottom: "1rem" }}
         variant="outlined"
-        label="To Do Description"
         fullWidth
+        placeholder="To Do Description"
         onChange={(e) => setTodoDescription(e.target.value)}
         value={todoDescription}
       />
       <Button
+        name="Add Item"
         variant="contained"
         color="primary"
         fullWidth
