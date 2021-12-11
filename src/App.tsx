@@ -10,23 +10,21 @@ import Box from "@material-ui/core/Box";
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth0();
+
   return (
     <Container maxWidth="xs">
       <AppBar>
         <Toolbar>
           <Box display="flex" flexDirection="row">
-            <Box p={1}>
-              <LoginButton />
-            </Box>
-            <Box p={1}>
-              <LogoutButton />
-            </Box>
+            <Box p={1}>{!isAuthenticated && <LoginButton />}</Box>
+            <Box p={1}>{isAuthenticated && <LogoutButton />}</Box>
           </Box>
         </Toolbar>
       </AppBar>
       {isAuthenticated ? (
         <div style={{ marginTop: "5rem" }}>
-          <h1 style={{ textAlign: "center", margin: "1rem" }}>Todo List App</h1>
+          <h1 style={{ textAlign: "center", margin: "1rem" }}>Todo List</h1>
+
           <AddTodo />
           <ListsTodos />
         </div>
