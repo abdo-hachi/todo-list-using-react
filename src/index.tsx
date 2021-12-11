@@ -3,13 +3,22 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import { store } from "./app/store";
+import { Auth0Provider } from "@auth0/auth0-react";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@material-ui/core/CssBaseline";
+const domain: any = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId: any = process.env.REACT_APP_AUTH0_CLIENT_ID;
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <CssBaseline />
-      <App />
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin}
+      >
+        <App />
+      </Auth0Provider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
